@@ -1,0 +1,64 @@
+Setting up the Game:
+
+  At the start of the game, the system shuffles the deck and places seven cards, from the deck, in each player's hand.
+  The remaining cards in the deck are placed face down on the table to be used as the draw pile.
+  The top card from the draw pile is placed face up on the table to begin a discard pile.
+
+Playing the Game:
+
+  The human player takes the first turn.
+  The system will indicate which cards in the player's hand can be legally discarded during each turn.
+  During a turn, the player may only discard at most one card from his or her hand.
+  During a turn, if the player has a playable card, he or she may choose whether or not to discard the card.
+  If the player has a playable card and chooses not to play it, he or she must draw cards from the draw pile until a playable card is drawn.
+  If the player does not have a playable card, he or she must draw cards from the draw pile until a playable card is drawn.
+  When the player draws a playable card from the draw pile, he or she may discard that card or continue to draw, one card at a time, from the draw pile.
+  If the draw pile is exhausted, the top card of the discard pile begins a new discard pile, and the remainder of the old discard pile is shuffled and used as the new draw pile.
+  If the player discards a Wild Card or Wild Draw Four Card, the player must declare a color for subsequent players to match.
+  If the player discards a Wild Draw Four Card, the next player cannot discard any card and must draw four cards from the draw pile.
+  If the player discards a Draw Two Card, the next player cannot discard any card and must draw two cards from the draw pile.
+  If the player discards a Reverse Card, the system will reverse the direction of play.
+  If the player discards a Skip Card, the system will skip the next player's turn.
+  If the player draws cards from the draw pile as a result of a Draw Two Card of Wild Draw Four Card, his or her turn ends after drawing.
+  If the player discards a playable card, his or her turn ends after discarding.
+
+  Ending the Game:
+
+  The first player to discard all of the cards in his or her hand is the winner of the game.
+
+Developers:
+
+Robert Bernal
+Annabel Hung
+Raymond Wong
+Matt Carson
+Dirk Cummings
+Eric Gustafson
+Ilya Seletsky
+
+Version 1.0
+
+Build 1.0
+
+Do you want to be able to draw more than one card on each turn? ("y" for yes, "n" for no)
+Multiple draws not allowed
+Enter a computer level for computer 0 (0 = easy, 1 = medium, 2 = hard):
+Enter a computer level for computer 1 (0 = easy, 1 = medium, 2 = hard):
+Enter a computer level for computer 2 (0 = easy, 1 = medium, 2 = hard):
+Enter a name for player kComputer1:
+Enter a name for player kComputer2:
+Enter a name for player kComputer3:
+Enter a name for player kHuman:
+-----------------------------------
+comp1 hand (easy):
+ WW G6 R2 G5 Y6 RR B2
+comp2 hand (easy):
+ BR YS WF R2 G1 B4 B5
+comp3 hand (easy):
+ Y3 GS G8 R3 B7 RT B2
+Current discard card: G4          Draw deck size: 59
+Color of current discard: green
+Your hand:
+ R1 RR B0 +G4 +G7 Y5 Y6
+Press enter to draw a card or enter a string to play card
+Enter a move:

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AWTTestScript desc="TestOptions">
+  <component class="cero.SwingOptionsMenu" id="Form" name="Form" parent="mainFrame" title="Options" />
+  <component class="javax.swing.JLayeredPane" id="JLayeredPane Instance" index="1" parent="JRootPane Instance" window="mainFrame" />
+  <component class="javax.swing.JLayeredPane" id="JLayeredPane Instance 2" index="1" parent="JRootPane Instance 2" window="Form" />
+  <component class="javax.swing.JPanel" id="JPanel Instance" index="0" parent="JLayeredPane Instance 2" window="Form" />
+  <component class="javax.swing.JPopupMenu" id="JPopupMenu Instance" index="0" invoker="fileMenu" />
+  <component class="javax.swing.JRootPane" id="JRootPane Instance" index="0" parent="mainFrame" />
+  <component class="javax.swing.JRootPane" id="JRootPane Instance 2" index="0" parent="Form" />
+  <component class="javax.swing.JRadioButton" id="c1easy" index="2" name="c1easy" parent="JPanel Instance" text="Easy" window="Form" />
+  <component class="javax.swing.JRadioButton" id="c1med" index="3" name="c1med" parent="JPanel Instance" text="Medium" window="Form" />
+  <component class="javax.swing.JRadioButton" id="c2easy" index="8" name="c2easy" parent="JPanel Instance" text="Easy" window="Form" />
+  <component class="javax.swing.JRadioButton" id="c3easy" index="18" name="c3easy" parent="JPanel Instance" text="Easy" window="Form" />
+  <component class="javax.swing.JRadioButton" id="c3hard" index="15" name="c3hard" parent="JPanel Instance" text="Hard" window="Form" />
+  <component class="javax.swing.JRadioButton" id="c3med" index="16" name="c3med" parent="JPanel Instance" text="Medium" window="Form" />
+  <component class="javax.swing.JButton" id="cancelButton" index="20" name="cancelButton" parent="JPanel Instance" text="Cancel" window="Form" />
+  <component class="javax.swing.JTextField" id="comp1name" index="5" name="comp1name" parent="JPanel Instance" window="Form" />
+  <component class="javax.swing.JTextField" id="comp2name" index="13" name="comp2name" parent="JPanel Instance" window="Form" />
+  <component class="javax.swing.JTextField" id="comp3name" index="19" name="comp3name" parent="JPanel Instance" window="Form" />
+  <component class="javax.swing.JCheckBox" id="drawCheckBox" index="12" name="drawCheckBox" parent="JPanel Instance" text="Draw One?*" window="Form" />
+  <component class="javax.swing.JMenuItem" id="exitMenuItem" index="2" name="exitMenuItem" parent="JPopupMenu Instance" text="Exit" window="mainFrame" />
+  <component class="javax.swing.JMenu" id="fileMenu" index="0" name="fileMenu" parent="menuBar" text="File" window="mainFrame" />
+  <component class="javax.swing.JMenu" id="helpMenu" index="1" name="helpMenu" parent="menuBar" text="Help" window="mainFrame" />
+  <component class="javax.swing.JFrame" id="mainFrame" name="mainFrame" root="true" title="Cero" />
+  <component class="javax.swing.JMenuBar" id="menuBar" index="1" name="menuBar" parent="JLayeredPane Instance" window="mainFrame" />
+  <component class="javax.swing.JMenuItem" id="newGameMenuItem" index="0" name="newGameMenuItem" parent="JPopupMenu Instance" text="New Game" window="mainFrame" />
+  <component class="javax.swing.JButton" id="okButton" index="21" name="okButton" parent="JPanel Instance" text="OK" window="Form" />
+  <component class="javax.swing.JMenuItem" id="optionsMenuItem" index="1" name="optionsMenuItem" parent="JPopupMenu Instance" text="Options" window="mainFrame" />
+  <component class="javax.swing.JTextField" id="playerName" index="14" name="playerName" parent="JPanel Instance" window="Form" />
+  <launch args="[]" class="cero.CeroApp" classpath=".:../dist/Cero.jar" desc="Launch Cero" method="main" />
+  <sequence>
+    <wait args="mainFrame" class="abbot.tester.ComponentTester" method="assertComponentShowing" />
+    <action args="optionsMenuItem" method="actionSelectMenuItem" />
+    <wait args="Form" class="abbot.tester.ComponentTester" method="assertComponentShowing" />
+    <action args="comp1name,15,0" class="javax.swing.text.JTextComponent" method="actionSelectText" />
+    <action args="comp1name,Alice" method="actionKeyString" />
+    <action args="c1easy" class="javax.swing.AbstractButton" method="actionClick" />
+    <action args="comp2name,16,0" class="javax.swing.text.JTextComponent" method="actionSelectText" />
+    <action args="comp2name,Bob" method="actionKeyString" />
+    <action args="comp3name,9,9" class="javax.swing.text.JTextComponent" method="actionSelectText" />
+    <action args="comp3name,9,0" class="javax.swing.text.JTextComponent" method="actionSelectText" />
+    <action args="comp3name,Clark" method="actionKeyString" />
+    <action args="c3hard" class="javax.swing.AbstractButton" method="actionClick" />
+    <action args="playerName,6,0" class="javax.swing.text.JTextComponent" method="actionSelectText" />
+    <action args="playerName,Eric" method="actionKeyString" />
+    <action args="drawCheckBox" class="javax.swing.AbstractButton" method="actionClick" />
+    <action args="okButton" class="javax.swing.AbstractButton" method="actionClick" />
+    <wait args="Form" class="abbot.tester.ComponentTester" invert="true" method="assertComponentShowing" />
+    <action args="newGameMenuItem" method="actionSelectMenuItem" />
+    <action args="exitMenuItem" method="actionSelectMenuItem" />
+  </sequence>
+  <terminate />
+</AWTTestScript>
+

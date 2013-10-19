@@ -1,0 +1,37 @@
+kPlayer1
+15 15
+Road,Road,Mountains,Mountains,Mountains,Mountains,Mountains,Mountains,Woods,Woods,Woods,Woods,Plains,Plains,Plains
+Road,Water,Water,Mountains,Mountains,Plains,Plains,Plains,Plains,Woods,Woods,Plains,Plains,Plains,Plains
+Plains,Water,Water,Water,Water,Plains,Mountains,Plains,Plains,Plains,Woods,Plains,Mountains,Mountains,Plains
+Plains,Plains,Water,Road,Road,Road,Mountains,Plains,Plains,Plains,Plains,Plains,Mountains,Plains,Plains
+Plains,Plains,Water,Road,Water,Water,Mountains,Mountains,Mountains,Plains,Mountains,Mountains,Mountains,Plains,Plains
+Plains,Plains,Plains,Plains,Swamp,Water,Mountains,Mountains,Mountains,Mountains,Mountains,Plains,Plains,Plains,Woods
+Plains,Plains,Swamp,Plains,Plains,Water,Water,Road,Mountains,Plains,Plains,Plains,Woods,Woods,Woods
+Plains,Water,Water,Swamp,Plains,Road,Road,Road,Water,Plains,Woods,Woods,Woods,Woods,Woods
+Plains,Water,Water,Road,Plains,Plains,Plains,Road,Water,Plains,Plains,Plains,Plains,Plains,Woods
+Plains,Road,Road,Road,Water,Water,Plains,Road,Water,Water,Water,Plains,Plains,Plains,Plains
+Plains,Water,Water,Water,Water,Water,Water,Road,Road,Water,Water,Road,Water,Plains,Plains
+Plains,Plains,Road,Road,Water,Water,Water,Plains,Road,Plains,Road,Road,Water,Plains,Plains
+Plains,Plains,Road,Road,Road,Road,Water,Plains,Plains,Plains,Water,Water,Water,Water,Plains
+Plains,Plains,Water,Water,Water,Water,Water,Plains,Plains,Plains,Swamp,Swamp,Water,Water,Road
+Plains,Plains,Plains,Plains,Swamp,Plains,Plains,Plains,Plains,Plains,Plains,Plains,Plains,Road,Road
+~,0,13,Brute,kPlayer2,100,3,true
+~,0,14,Terrorbird,kPlayer2,100,5,true
+~,1,5,Brute,kPlayer2,100,3,true
+~,1,8,Berserker,kPlayer2,75,5,true
+~,1,12,Berserker,kPlayer2,75,5,true
+~,1,14,Berserker,kPlayer2,75,5,true
+~,2,0,Brute,kPlayer2,100,3,true
+~,3,10,Berserker,kPlayer2,75,5,true
+~,3,13,Berserker,kPlayer2,75,5,true
+~,5,13,Berserker,kPlayer2,75,5,true
+~,6,11,Berserker,kPlayer2,75,5,true
+~,8,5,Armoredillo,kPlayer1,100,2,true
+~,8,10,Brute,kPlayer2,100,3,true
+~,10,0,Spearman,kPlayer1,100,3,true
+~,12,1,Spearman,kPlayer1,100,3,true
+~,12,3,Rockthrower,kPlayer1,70,3,true
+~,13,0,Brute,kPlayer1,100,3,true
+~,14,2,Spearman,kPlayer1,100,3,true
+~,14,8,Rockthrower,kPlayer1,70,3,true
+The Cromagmar forces prepare to advance across the river and destroy the Leaftron army. The overconfident aggressors send out their berserkers but crossing the river may be more dangerous than they expected.

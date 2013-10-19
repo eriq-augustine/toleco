@@ -1,0 +1,32 @@
+B9
+B9
+B9
+B9
+B9
+B9
+B9
+R8
+R8
+R8
+R8
+R8
+R8
+R8
+R8
+R8
+R8
+R8
+R8
+R8
+R8
+R8
+R8
+R8
+R8
+R8
+R8
+R8
+# Should be flop card
+B7
+# Should be drawn card
+B6

@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- You may freely edit this file. See commented blocks below for -->
+<!-- some examples of how to customize the build. -->
+<!-- (If you delete it and reopen the project it will be recreated.) -->
+<!-- By default, only the Clean and Build commands use this build script. -->
+<!-- Commands such as Run, Debug, and Test only use this build script if -->
+<!-- the Compile on Save feature is turned off for the project. -->
+<!-- You can turn off the Compile on Save (or Deploy on Save) setting -->
+<!-- in the project's Project Properties dialog box.-->
+<project name="Cero" default="default" basedir=".">
+    <description>Builds, tests, and runs the project Cero.</description>
+    <import file="nbproject/build-impl.xml"/>
+    <!--
+
+    There exist several targets which are by default empty and which can be 
+    used for execution of your tasks. These targets are usually executed 
+    before and after some main targets. They are: 
+
+      -pre-init:                 called before initialization of project properties
+      -post-init:                called after initialization of project properties
+      -pre-compile:              called before javac compilation
+      -post-compile:             called after javac compilation
+      -pre-compile-single:       called before javac compilation of single file
+      -post-compile-single:      called after javac compilation of single file
+      -pre-compile-test:         called before javac compilation of JUnit tests
+      -post-compile-test:        called after javac compilation of JUnit tests
+      -pre-compile-test-single:  called before javac compilation of single JUnit test
+      -post-compile-test-single: called after javac compilation of single JUunit test
+      -pre-jar:                  called before JAR building
+      -post-jar:                 called after JAR building
+      -post-clean:               called after cleaning build products
+
+    (Targets beginning with '-' are not intended to be called on their own.)
+
+    Example of inserting an obfuscator after compilation could look like this:
+
+        <target name="-post-compile">
+            <obfuscate>
+                <fileset dir="${build.classes.dir}"/>
+            </obfuscate>
+        </target>
+
+    For list of available properties check the imported 
+    nbproject/build-impl.xml file. 
+
+
+    Another way to customize the build is by overriding existing main targets.
+    The targets of interest are: 
+
+      -init-macrodef-javac:     defines macro for javac compilation
+      -init-macrodef-junit:     defines macro for junit execution
+      -init-macrodef-debug:     defines macro for class debugging
+      -init-macrodef-java:      defines macro for class execution
+      -do-jar-with-manifest:    JAR building (if you are using a manifest)
+      -do-jar-without-manifest: JAR building (if you are not using a manifest)
+      run:                      execution of project 
+      -javadoc-build:           Javadoc generation
+      test-report:              JUnit report generation
+
+    An example of overriding the target for project execution could look like this:
+
+        <target name="run" depends="Cero-impl.jar">
+            <exec dir="bin" executable="launcher.exe">
+                <arg file="${dist.jar}"/>
+            </exec>
+        </target>
+
+    Notice that the overridden target depends on the jar target and not only on 
+    the compile target as the regular run target does. Again, for a list of available 
+    properties which you can use, check the target you are overriding in the
+    nbproject/build-impl.xml file. 
+
+    -->
+
+    <!-- Create a timestamp for Ant to use in javadoc title -->
+    <!-- Create a property for javadoc special parameters -->
+    <target name="-pre-init">
+       <tstamp/>
+       <property name="javadoc.windowtitle" value="Cero ${TODAY}"/>
+       <property name="javadoc.additionalparam"
+         value='-overview ${basedir}/src/cero/overview.html
+         -tag pre:cm:"Precondition:"
+         -tag post:cm:"Postcondition:" '/>
+    </target>
+
+    <!-- Store Subversion Build String -->
+    <!-- Store the Subversion version string every time a clean/bluid -->
+    <target name="-pre-compile" depends="loc">
+       <exec executable="svnversion" output="${src.dir}/svn-version.txt"
+         outputproperty="svn-version.out"/>
+       <echo>Using SVN Revision: ${svn-version.out}</echo>
+    </target>
+
+   <!--
+         ==================
+         CHECKSTYLE SECTION
+         ==================
+   -->
+<target description="Run checkstyle on src directory." name="checkstyle">
+   <taskdef resource="checkstyletask.properties"
+      classpath="lib/308checks.jar;lib/checkstyle-all-4.4.jar"/>
+   <checkstyle config="nbproject/308style.xml">
+      <!-- Don't check IDE generated gui classes -->
+      <!-- Don't check Fakes -->
+      <!-- Don't check classes not part of this release -->
+      <fileset dir="src/cero/" includes="**/*.java"
+         excludes="**/Swing* **/Fake* **/Scripted* **/EasyComputerPlayer.java **/MediumComputerPlayer.java **/HardComputerPlayer.java **/About.java" />
+   </checkstyle>
+</target>
+
+    <!--
+         =====================
+         LOC Counter (ver 2.3)
+         =====================
+    
+    -->
+
+<target description="Count Lines of Code in the src directory." name="loc">
+   <java classname="textui.LOC">
+      <arg line="-n -d ./src/cero/ "/>
+      <classpath>
+         <pathelement location="lib/LOC.jar" />
+      </classpath>
+   </java>
+</target>
+
+      <!--
+            ===========
+            Daily Build
+            ===========
+      -->
+<target description="Daily Build" name="daily" 
+   depends="clean,compile,javadoc,checkstyle,loc">
+   <echo>Daily Build Complete</echo>
+</target>
+
+
+    <!--
+                =================
+                PACKAGE ALL LIBS WITH CERO.JAR
+                =================
+     -->
+
+ <target name="-post-jar">
+   <jar jarfile="${dist.jar}" update="true">
+    <zipfileset src="${dist.jar}" includes="**/*.class" />
+    <zipfileset src="lib/absolutelayout/AbsoluteLayout.jar" includes="**/*.class"/>
+    <zipfileset src="lib/swing-app-framework/appframework-1.0.3.jar" includes="**/*.class"/>
+   </jar>
+ </target>
+
+ <!--
+               Systests
+   -->
+ <target depends="init,compile,jar" description="Run console-based system tests." name="systest">
+    <property name="systest.dir" value="systest"/>
+    <property name="test.dir" value="test"/>
+    <property name="diffresults" value="${systest.dir}/diffresults.txt"/>
+    <property name="error.log" value="${systest.dir}/errorlog.txt"/>
+    <!-- Remove any results from previous test runs -->
+    <delete >
+         <fileset dir="${systest.dir}/results" includes="**/*" />
+    </delete>
+    <delete file="${diffresults}"/>
+    <delete file="${error.log}"/>
+    <echo message="running systest1"/>
+        <!-- Execute the console version of the app with test data -->
+    <java classname="${main.class}"
+       classpath="${dist.jar}"
+       fork="true"
+       input="${systest.dir}/consoledata/testSU1_2_3.in"
+       output="${systest.dir}/results/testSU1_2_3.out"
+       error="${error.log}"
+       append="true">
+       <arg line="-c ${test.dir}/deckfiles/presetDeck2.txt"/>
+   </java>
+
+   <java classname="${main.class}"
+       classpath="${dist.jar}"
+       fork="true"
+       input="${systest.dir}/consoledata/testPTG5to7.in"
+       output="${systest.dir}/results/testPTG5to7.out"
+       error="${error.log}"
+       append="true">
+       <arg line="-c ${test.dir}/deckfiles/apresetDeck1.txt"/>
+   </java>
+
+   <java classname="${main.class}"
+       classpath="${dist.jar}"
+       fork="true"
+       input="${systest.dir}/consoledata/testPTG1_2_3_4_8.in"
+       output="${systest.dir}/results/testPTG1_2_3_4_8.out"
+       error="${error.log}"
+       append="true">
+       <arg line="-c ${test.dir}/deckfiles/presetDeck2.txt"/>
+   </java>
+
+   <java classname="${main.class}"
+       classpath="${dist.jar}"
+       fork="true"
+       input="${systest.dir}/consoledata/testPTG16.in"
+       output="${systest.dir}/results/testPTG16.out"
+       error="${error.log}"
+       append="true">
+       <arg line="-c ${test.dir}/deckfiles/rpresetDeck19.txt"/>
+   </java>
+
+   <java classname="${main.class}"
+       classpath="${dist.jar}"
+       fork="true"
+       input="${systest.dir}/consoledata/testPTG15.in"
+       output="${systest.dir}/results/testPTG15.out"
+       error="${error.log}"
+       append="true">
+       <arg line="-c ${test.dir}/deckfiles/rpresetDeck18.txt"/>
+   </java>
+
+   <java classname="${main.class}"
+       classpath="${dist.jar}"
+       fork="true"
+       input="${systest.dir}/consoledata/testPTG14_18.in"
+       output="${systest.dir}/results/testPTG14_18.out"
+       error="${error.log}"
+       append="true">
+       <arg line="-c ${test.dir}/deckfiles/rpresetDeck17.txt"/>
+   </java>
+
+   <java classname="${main.class}"
+       classpath="${dist.jar}"
+       fork="true"
+       input="${systest.dir}/consoledata/testPTG12_13_17_18.in"
+       output="${systest.dir}/results/testPTG12_13_17_18.out"
+       error="${error.log}"
+       append="true">
+       <arg line="-c ${test.dir}/deckfiles/rpresetDeck16.txt"/>
+   </java>
+
+   <java classname="${main.class}"
+       classpath="${dist.jar}"
+       fork="true"
+       input="${systest.dir}/consoledata/testOptions.in"
+       output="${systest.dir}/results/testOptions.out"
+       error="${error.log}"
+       append="true">
+       <arg line="-c ${test.dir}/deckfiles/epresetDeck1.txt"/>
+   </java>
+
+   <java classname="${main.class}"
+       classpath="${dist.jar}"
+       fork="true"
+       input="${systest.dir}/consoledata/testETG2.in"
+       output="${systest.dir}/results/testETG2.out"
+       error="${error.log}"
+       append="true">
+       <arg line="-c ${test.dir}/deckfiles/apresetDeck2.txt"/>
+   </java>
+
+   <java classname="${main.class}"
+       classpath="${dist.jar}"
+       fork="true"
+       input="${systest.dir}/consoledata/testETG.in"
+       output="${systest.dir}/results/testETG.out"
+       error="${error.log}"
+       append="true">
+       <arg line="-c ${test.dir}/deckfiles/apresetDeck2.txt"/>
+   </java>
+
+   <exec dir="${systest.dir}" executable="/usr/bin/diff" osfamily="unix"
+       output="${diffresults}" append="true">
+     <arg line="results/testSU1_2_3.out oracles/testSU1_2_3.txt"/>
+   </exec>
+
+   <exec dir="${systest.dir}" executable="/usr/bin/diff" osfamily="unix"
+       output="${diffresults}" append="true">
+     <arg line="results/testPTG5to7.out oracles/testPTG5to7.txt"/>
+   </exec>
+
+   <exec dir="${systest.dir}" executable="/usr/bin/diff" osfamily="unix"
+       output="${diffresults}" append="true">
+     <arg line="results/testPTG1_2_3_4_8.out oracles/testPTG1_2_3_4_8.txt"/>
+   </exec>
+
+   <exec dir="${systest.dir}" executable="/usr/bin/diff" osfamily="unix"
+       output="${diffresults}" append="true">
+     <arg line="results/testPTG16.out oracles/testPTG16.txt"/>
+   </exec>
+
+   <exec dir="${systest.dir}" executable="/usr/bin/diff" osfamily="unix"
+       output="${diffresults}" append="true">
+     <arg line="results/testPTG15.out oracles/testPTG15.txt"/>
+   </exec>
+
+   <exec dir="${systest.dir}" executable="/usr/bin/diff" osfamily="unix"
+       output="${diffresults}" append="true">
+     <arg line="results/testPTG14_18.out oracles/testPTG14_18.txt"/>
+   </exec>
+
+   <exec dir="${systest.dir}" executable="/usr/bin/diff" osfamily="unix"
+       output="${diffresults}" append="true">
+     <arg line="results/testPTG12_13_17_18.out oracles/testPTG12_13_17_18.txt"/>
+   </exec>
+
+   <exec dir="${systest.dir}" executable="/usr/bin/diff" osfamily="unix"
+       output="${diffresults}" append="true">
+     <arg line="results/testOptions.out oracles/testOptions.txt"/>
+   </exec>
+
+   <exec dir="${systest.dir}" executable="/usr/bin/diff" osfamily="unix"
+       output="${diffresults}" append="true">
+     <arg line="results/testETG2.out oracles/testETG2.txt"/>
+   </exec>
+
+   <exec dir="${systest.dir}" executable="/usr/bin/diff" osfamily="unix"
+       output="${diffresults}" append="true">
+     <arg line="results/testETG.out oracles/testETG.txt"/>
+   </exec>
+
+  </target>
+</project>
+
+

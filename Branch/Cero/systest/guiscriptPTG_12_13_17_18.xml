@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AWTTestScript>
+  <component class="javax.swing.JLabel" id="JLabel Instance" index="9" parent="humanPanel" text="" window="mainFrame" />
+  <component class="javax.swing.JLabel" id="JLabel Instance 2" index="5" parent="humanPanel" text="" window="mainFrame" />
+  <component class="javax.swing.JLabel" id="JLabel Instance 3" index="8" parent="humanPanel" text="" window="mainFrame" />
+  <component class="javax.swing.JLabel" id="JLabel Instance 4" index="4" parent="humanPanel" text="" window="mainFrame" />
+  <component class="javax.swing.JLabel" id="JLabel Instance 5" index="6" parent="humanPanel" text="" window="mainFrame" />
+  <component class="javax.swing.JLayeredPane" id="JLayeredPane Instance" index="1" parent="JRootPane Instance" window="mainFrame" />
+  <component class="javax.swing.JPanel" id="JPanel Instance" index="0" parent="JLayeredPane Instance" window="mainFrame" />
+  <component class="javax.swing.JRootPane" id="JRootPane Instance" index="0" parent="mainFrame" />
+  <component class="javax.swing.JButton" id="colChooserGreenButton" index="3" name="colChooserGreenButton" parent="deckPanel" text="Green" window="mainFrame" />
+  <component class="javax.swing.JButton" id="colChooserRedButton" index="5" name="colChooserRedButton" parent="deckPanel" text="Red" window="mainFrame" />
+  <component class="javax.swing.JPanel" id="computerPanelL" index="1" name="computerPanelL" parent="mainPanel" window="mainFrame" />
+  <component class="javax.swing.JPanel" id="deckPanel" index="10" name="deckPanel" parent="mainPanel" window="mainFrame" />
+  <component class="javax.swing.JPanel" id="humanPanel" index="2" name="humanPanel" parent="mainPanel" window="mainFrame" />
+  <component class="javax.swing.JFrame" id="mainFrame" name="mainFrame" root="true" title="Basic Application Example" />
+  <component class="javax.swing.JPanel" id="mainPanel" index="0" name="mainPanel" parent="JPanel Instance" window="mainFrame" />
+  <component class="javax.swing.JLabel" id="messageTextLabel" index="9" name="messageTextLabel" parent="mainPanel" text="Matt Dirk played a red nine" window="mainFrame" />
+  <launch args="[../test/deckfiles/rpresetDeck16.txt]" class="cero.CeroApp" classpath=".:../dist/Cero.jar" method="main" />
+  <sequence>
+    <wait args="mainFrame" class="abbot.tester.ComponentTester" method="assertComponentShowing" />
+    <action args="JLabel Instance 3,(22%2c22)" class="javax.swing.JLabel" method="actionClick" />
+    <action args="colChooserGreenButton" class="javax.swing.AbstractButton" method="actionClick" />
+    <action args="JLabel Instance 2,(10%2c13)" class="javax.swing.JLabel" method="actionClick" />
+    <action args="JLabel Instance 2,(24%2c0)" class="javax.swing.JLabel" method="actionClick" />
+    <action args="JLabel Instance 5,(4%2c17)" class="javax.swing.JLabel" method="actionClick" />
+    <action args="colChooserRedButton" class="javax.swing.AbstractButton" method="actionClick" />
+    <action args="JLabel Instance 4,(17%2c21)" class="javax.swing.JLabel" method="actionClick" />
+  </sequence>
+  <assert component="deckPanel" method="getBackground" value="java.awt.Color[r=255,g=0,b=0]" />
+  <assert component="computerPanelL" method="getComponentCount" value="10" />
+  <terminate />
+</AWTTestScript>
+

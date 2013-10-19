@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AWTTestScript>
+  <component class="javax.swing.JLabel" id="JLabel Instance" index="3" parent="humanPanel" text="" window="mainFrame" />
+  <component class="javax.swing.JLabel" id="JLabel Instance 2" index="1" parent="humanPanel" text="" window="mainFrame" />
+  <component class="javax.swing.JLayeredPane" id="JLayeredPane Instance" index="1" parent="JRootPane Instance" window="mainFrame" />
+  <component class="javax.swing.JPanel" id="JPanel Instance" index="0" parent="JLayeredPane Instance" window="mainFrame" />
+  <component class="javax.swing.JRootPane" id="JRootPane Instance" index="0" parent="mainFrame" />
+  <component class="javax.swing.JButton" id="drawButton" index="7" name="drawButton" parent="mainPanel" text="Draw" window="mainFrame" />
+  <component class="javax.swing.JPanel" id="humanPanel" index="2" name="humanPanel" parent="mainPanel" window="mainFrame" />
+  <component class="javax.swing.JFrame" id="mainFrame" name="mainFrame" root="true" title="Cero" />
+  <component class="javax.swing.JPanel" id="mainPanel" index="0" name="mainPanel" parent="JPanel Instance" window="mainFrame" />
+  <launch args="[../test/deckfiles/apresetDeck1.txt]" class="cero.CeroApp" classpath="../dist/Cero.jar" desc="Launch cero.CeroApp.main([])" method="main" />
+  <sequence>
+    <wait args="mainFrame" class="abbot.tester.ComponentTester" method="assertComponentShowing" />
+    <action args="JLabel Instance,(7%2c39)" class="javax.swing.JLabel" method="actionClick" />
+    <action args="drawButton" class="javax.swing.AbstractButton" method="actionClick" />
+    <action args="drawButton" class="javax.swing.AbstractButton" method="actionClick" />
+    <action args="drawButton" class="javax.swing.AbstractButton" method="actionClick" />
+    <action args="JLabel Instance,(8%2c56)" class="javax.swing.JLabel" desc="Click(JLabel Instance (8,56))" method="actionClick" />
+    <action args="1500" method="actionDelay" />
+    <action args="mainFrame" class="java.awt.Window" method="actionClose" />
+  </sequence>
+  <terminate />
+</AWTTestScript>
+

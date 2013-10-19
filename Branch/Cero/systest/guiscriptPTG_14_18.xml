@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AWTTestScript>
+  <component class="javax.swing.JLabel" id="JLabel Instance" index="6" parent="humanPanel" text="" window="mainFrame" />
+  <component class="javax.swing.JLayeredPane" id="JLayeredPane Instance" index="1" parent="JRootPane Instance" window="mainFrame" />
+  <component class="javax.swing.JPanel" id="JPanel Instance" index="0" parent="JLayeredPane Instance" window="mainFrame" />
+  <component class="javax.swing.JRootPane" id="JRootPane Instance" index="0" parent="mainFrame" />
+  <component class="javax.swing.JPanel" id="computerPanelL" index="1" name="computerPanelL" parent="mainPanel" window="mainFrame" />
+  <component class="javax.swing.JPanel" id="deckPanel" index="10" name="deckPanel" parent="mainPanel" window="mainFrame" />
+  <component class="javax.swing.JPanel" id="humanPanel" index="2" name="humanPanel" parent="mainPanel" window="mainFrame" />
+  <component class="javax.swing.JFrame" id="mainFrame" name="mainFrame" root="true" title="Basic Application Example" />
+  <component class="javax.swing.JPanel" id="mainPanel" index="0" name="mainPanel" parent="JPanel Instance" window="mainFrame" />
+  <component class="javax.swing.JLabel" id="messageTextLabel" index="9" name="messageTextLabel" parent="mainPanel" text="Matt Dirk played a red nine" window="mainFrame" />
+  <launch args="[../test/deckfiles/rpresetDeck17.txt]" class="cero.CeroApp" classpath=".:../dist/Cero.jar" desc="Launch cero.CeroApp.main([])" method="main" />
+  <sequence>
+    <wait args="mainFrame" class="abbot.tester.ComponentTester" method="assertComponentShowing" />
+    <action args="JLabel Instance,(29%2c12)" class="javax.swing.JLabel" method="actionClick" />
+    <action args="JLabel Instance,(13%2c17)" class="javax.swing.JLabel" method="actionClick" />
+    <action args="JLabel Instance,(16%2c17)" class="javax.swing.JLabel" method="actionClick" />
+  </sequence>
+  <assert component="deckPanel" method="getBackground" value="java.awt.Color[r=255,g=0,b=0]" />
+  <assert component="computerPanelL" method="getComponentCount" value="9" />
+  <terminate />
+</AWTTestScript>
+

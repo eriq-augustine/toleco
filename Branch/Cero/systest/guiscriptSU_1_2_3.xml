@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AWTTestScript>
+  <component class="javax.swing.JFrame" id="mainFrame" name="mainFrame" root="true" title="Cero" />
+  <launch args="[../test/deckfiles/presetDeck2.txt]" class="cero.CeroApp" classpath="../dist/Cero.jar" method="main" />
+  <sequence>
+    <wait args="mainFrame" class="abbot.tester.ComponentTester" method="assertComponentShowing" />
+    <action args="mainFrame" class="java.awt.Window" method="actionClose" />
+  </sequence>
+  <terminate />
+</AWTTestScript>
+

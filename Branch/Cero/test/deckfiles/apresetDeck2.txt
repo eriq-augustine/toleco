@@ -1,0 +1,54 @@
+B1
+B2
+B3
+B4
+B5
+B6
+B7
+# c1
+B1
+B2
+B3
+B4
+B5
+B6
+B7
+# c2
+B1
+B2
+B3
+B4
+B5
+B6
+B7
+# c3
+B1
+B2
+B3
+B4
+B5
+B6
+B7
+# discard
+B0
+# draw
+G5
+R0
+R0
+G9
+Y4
+YT
+B1
+B2
+B3
+B4
+B5
+B6
+B7
+B1
+B2
+B3
+B4
+B5
+B6
+B7
